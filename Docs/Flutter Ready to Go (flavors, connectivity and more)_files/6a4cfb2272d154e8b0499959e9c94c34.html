@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://medium.com/media/6a4cfb2272d154e8b0499959e9c94c34 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>flavor_banner.dart – Medium</title><meta name="description" content="GitHub Gist: instantly share code, notes, and snippets."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./0ca88e284f5c6ce4d8aa35a9df7f76d7.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-31007ea0d3bd9f80540adfbc55afc7bd.css"><div id="gist95165277" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-flavor_banner-dart" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-dart ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8" data-paste-markdown-skip="">
+      <tbody><tr>
+        <td id="file-flavor_banner-dart-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-flavor_banner-dart-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-c1">FlavorBanner</span> <span class="pl-k">extends</span> <span class="pl-c1">StatelessWidget</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-flavor_banner-dart-LC2" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">final</span> <span class="pl-c1">Widget</span> child;</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-flavor_banner-dart-LC3" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">BannerConfig</span> bannerConfig;</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-flavor_banner-dart-LC4" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">FlavorBanner</span>({<span class="pl-k">@required</span> <span class="pl-c1">this</span>.child});</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-flavor_banner-dart-LC5" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-flavor_banner-dart-LC6" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">@override</span></td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-flavor_banner-dart-LC7" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">Widget</span> <span class="pl-en">build</span>(<span class="pl-c1">BuildContext</span> context) {</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-flavor_banner-dart-LC8" class="blob-code blob-code-inner js-file-line">    <span class="pl-en">if</span>(<span class="pl-c1">FlavorConfig</span>.<span class="pl-en">isProduction</span>()) <span class="pl-k">return</span> child;</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-flavor_banner-dart-LC9" class="blob-code blob-code-inner js-file-line">    bannerConfig <span class="pl-k">??</span><span class="pl-k">=</span> <span class="pl-en">_getDefaultBanner</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-flavor_banner-dart-LC10" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> <span class="pl-c1">Stack</span>(</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-flavor_banner-dart-LC11" class="blob-code blob-code-inner js-file-line">      children<span class="pl-k">:</span> <span class="pl-k">&lt;</span><span class="pl-c1">Widget</span><span class="pl-k">&gt;</span>[</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-flavor_banner-dart-LC12" class="blob-code blob-code-inner js-file-line">        child,</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-flavor_banner-dart-LC13" class="blob-code blob-code-inner js-file-line">        <span class="pl-en">_buildBanner</span>(context)</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-flavor_banner-dart-LC14" class="blob-code blob-code-inner js-file-line">      ],</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-flavor_banner-dart-LC15" class="blob-code blob-code-inner js-file-line">    );</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L16" class="blob-num js-line-number" data-line-number="16"></td>
+        <td id="file-flavor_banner-dart-LC16" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L17" class="blob-num js-line-number" data-line-number="17"></td>
+        <td id="file-flavor_banner-dart-LC17" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L18" class="blob-num js-line-number" data-line-number="18"></td>
+        <td id="file-flavor_banner-dart-LC18" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">BannerConfig</span> <span class="pl-en">_getDefaultBanner</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L19" class="blob-num js-line-number" data-line-number="19"></td>
+        <td id="file-flavor_banner-dart-LC19" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> <span class="pl-c1">BannerConfig</span>(</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L20" class="blob-num js-line-number" data-line-number="20"></td>
+        <td id="file-flavor_banner-dart-LC20" class="blob-code blob-code-inner js-file-line">      bannerName<span class="pl-k">:</span> <span class="pl-c1">FlavorConfig</span>.instance.name,</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L21" class="blob-num js-line-number" data-line-number="21"></td>
+        <td id="file-flavor_banner-dart-LC21" class="blob-code blob-code-inner js-file-line">      bannerColor<span class="pl-k">:</span> <span class="pl-c1">FlavorConfig</span>.instance.color</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L22" class="blob-num js-line-number" data-line-number="22"></td>
+        <td id="file-flavor_banner-dart-LC22" class="blob-code blob-code-inner js-file-line">    );</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L23" class="blob-num js-line-number" data-line-number="23"></td>
+        <td id="file-flavor_banner-dart-LC23" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L24" class="blob-num js-line-number" data-line-number="24"></td>
+        <td id="file-flavor_banner-dart-LC24" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">Widget</span> <span class="pl-en">_buildBanner</span>(<span class="pl-c1">BuildContext</span> context) {</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L25" class="blob-num js-line-number" data-line-number="25"></td>
+        <td id="file-flavor_banner-dart-LC25" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> <span class="pl-c1">Container</span>(</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L26" class="blob-num js-line-number" data-line-number="26"></td>
+        <td id="file-flavor_banner-dart-LC26" class="blob-code blob-code-inner js-file-line">      width<span class="pl-k">:</span> <span class="pl-c1">50</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L27" class="blob-num js-line-number" data-line-number="27"></td>
+        <td id="file-flavor_banner-dart-LC27" class="blob-code blob-code-inner js-file-line">      height<span class="pl-k">:</span> <span class="pl-c1">50</span>,</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L28" class="blob-num js-line-number" data-line-number="28"></td>
+        <td id="file-flavor_banner-dart-LC28" class="blob-code blob-code-inner js-file-line">      child<span class="pl-k">:</span> <span class="pl-c1">CustomPaint</span>(</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L29" class="blob-num js-line-number" data-line-number="29"></td>
+        <td id="file-flavor_banner-dart-LC29" class="blob-code blob-code-inner js-file-line">        painter<span class="pl-k">:</span> <span class="pl-c1">BannerPainter</span>(</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L30" class="blob-num js-line-number" data-line-number="30"></td>
+        <td id="file-flavor_banner-dart-LC30" class="blob-code blob-code-inner js-file-line">          message<span class="pl-k">:</span> bannerConfig.bannerName,</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L31" class="blob-num js-line-number" data-line-number="31"></td>
+        <td id="file-flavor_banner-dart-LC31" class="blob-code blob-code-inner js-file-line">          textDirection<span class="pl-k">:</span> <span class="pl-c1">Directionality</span>.<span class="pl-en">of</span>(context),</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L32" class="blob-num js-line-number" data-line-number="32"></td>
+        <td id="file-flavor_banner-dart-LC32" class="blob-code blob-code-inner js-file-line">          layoutDirection<span class="pl-k">:</span> <span class="pl-c1">Directionality</span>.<span class="pl-en">of</span>(context),</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L33" class="blob-num js-line-number" data-line-number="33"></td>
+        <td id="file-flavor_banner-dart-LC33" class="blob-code blob-code-inner js-file-line">          location<span class="pl-k">:</span> <span class="pl-c1">BannerLocation</span>.topStart,</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L34" class="blob-num js-line-number" data-line-number="34"></td>
+        <td id="file-flavor_banner-dart-LC34" class="blob-code blob-code-inner js-file-line">          color<span class="pl-k">:</span> bannerConfig.bannerColor</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L35" class="blob-num js-line-number" data-line-number="35"></td>
+        <td id="file-flavor_banner-dart-LC35" class="blob-code blob-code-inner js-file-line">        ),</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L36" class="blob-num js-line-number" data-line-number="36"></td>
+        <td id="file-flavor_banner-dart-LC36" class="blob-code blob-code-inner js-file-line">      ),</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L37" class="blob-num js-line-number" data-line-number="37"></td>
+        <td id="file-flavor_banner-dart-LC37" class="blob-code blob-code-inner js-file-line">    );</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L38" class="blob-num js-line-number" data-line-number="38"></td>
+        <td id="file-flavor_banner-dart-LC38" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L39" class="blob-num js-line-number" data-line-number="39"></td>
+        <td id="file-flavor_banner-dart-LC39" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L40" class="blob-num js-line-number" data-line-number="40"></td>
+        <td id="file-flavor_banner-dart-LC40" class="blob-code blob-code-inner js-file-line">
+</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L41" class="blob-num js-line-number" data-line-number="41"></td>
+        <td id="file-flavor_banner-dart-LC41" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-c1">BannerConfig</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L42" class="blob-num js-line-number" data-line-number="42"></td>
+        <td id="file-flavor_banner-dart-LC42" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">final</span> <span class="pl-c1">String</span> bannerName;</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L43" class="blob-num js-line-number" data-line-number="43"></td>
+        <td id="file-flavor_banner-dart-LC43" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">final</span> <span class="pl-c1">Color</span> bannerColor;</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L44" class="blob-num js-line-number" data-line-number="44"></td>
+        <td id="file-flavor_banner-dart-LC44" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">BannerConfig</span>({</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L45" class="blob-num js-line-number" data-line-number="45"></td>
+        <td id="file-flavor_banner-dart-LC45" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@required</span> <span class="pl-c1">String</span> <span class="pl-c1">this</span>.bannerName,</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L46" class="blob-num js-line-number" data-line-number="46"></td>
+        <td id="file-flavor_banner-dart-LC46" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">@required</span> <span class="pl-c1">Color</span> <span class="pl-c1">this</span>.bannerColor});</td>
+      </tr>
+      <tr>
+        <td id="file-flavor_banner-dart-L47" class="blob-num js-line-number" data-line-number="47"></td>
+        <td id="file-flavor_banner-dart-LC47" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/JHBitencourt/0ca88e284f5c6ce4d8aa35a9df7f76d7/raw/a1c443ae3fcac17b95a791f0064b400be47d097e/flavor_banner.dart" style="float:right">view raw</a>
+        <a href="https://gist.github.com/JHBitencourt/0ca88e284f5c6ce4d8aa35a9df7f76d7#file-flavor_banner-dart">flavor_banner.dart</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script></body></html>
