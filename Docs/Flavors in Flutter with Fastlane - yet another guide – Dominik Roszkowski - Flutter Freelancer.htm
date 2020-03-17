@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://roszkowski.dev/2019/flutter-flavors/#fastlane -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer</title>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
+    <link rel="dns-prefetch" href="https://maxcdn.bootstrapcdn.com/">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="It&#39;s a good practice to build separate apps for development, test and production environment. In case of mobile apps a good way to have separate configurations is usage of flavors. In this tutorial you will learn how to prepare ordinary Flutter project to have 3 different flavors and how to handle CI/CD with fastlane.">
+    <meta name="robots" content="all">
+    <meta name="author" content="Dominik Roszkowski">
+    
+    <meta name="keywords" content="">
+    <link rel="canonical" href="https://roszkowski.dev/2019/flutter-flavors/">
+    <link rel="alternate" type="application/rss+xml" title="RSS Feed for Dominik Roszkowski - Flutter Freelancer" href="https://roszkowski.dev/feed.xml">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/pixyll.css" type="text/css">
+
+    <!-- Fonts -->
+    
+    <link href="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/css" rel="stylesheet" type="text/css">
+    <link href="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/css(1)" rel="stylesheet" type="text/css">
+    
+    
+      <link href="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/font-awesome.min.css" rel="stylesheet">
+    
+
+    <!-- MathJax -->
+    
+
+    <!-- Verifications -->
+    
+    
+
+    <!-- Open Graph -->
+    <!-- From: https://github.com/mmistakes/hpstr-jekyll-theme/blob/master/_includes/head.html -->
+    <meta property="og:locale" content="en_US">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Flavors in Flutter with Fastlane - yet another guide">
+    <meta property="og:description" content="In this tutorial you will learn how to prepare ordinary Flutter project to have 3 different flavors and how to handle CI/CD with fastlane.">
+    <meta property="og:url" content="https://roszkowski.dev/2019/flutter-flavors/">
+    <meta property="og:site_name" content="Dominik Roszkowski - Flutter Freelancer">
+    
+      
+      <meta property="og:image" content="https://roszkowski.dev/images/avataaars.png">
+      
+    
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    
+        <meta name="twitter:site" content="@orestesgaolin">
+        <meta name="twitter:creator" content="@orestesgaolin">
+    
+    <meta name="twitter:title" content="Flavors in Flutter with Fastlane - yet another guide">
+    <meta name="twitter:description" content="It&#39;s a good practice to build separate apps for development, test and production environment. In case of mobile apps a good way to have separate configurations is usage of flavors. In this tutorial you will learn how to prepare ordinary Flutter project to have 3 different flavors and how to handle CI/CD with fastlane.">
+    <meta name="twitter:url" content="https://roszkowski.dev/2019/flutter-flavors/">
+    
+      
+      <meta property="og:image" content="https://roszkowski.dev/images/avataaars.png">
+      
+    
+
+    
+
+
+
+
+
+    <!-- Icons -->
+<link rel="shortcut icon" href="https://roszkowski.dev/favicon.ico">
+
+    
+    <!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Flavors in Flutter with Fastlane - yet another guide | Dominik Roszkowski - Flutter Freelancer</title>
+<meta name="generator" content="Jekyll v3.8.5">
+<meta property="og:title" content="Flavors in Flutter with Fastlane - yet another guide">
+<meta name="author" content="Dominik Roszkowski">
+<meta property="og:locale" content="en_US">
+<meta name="description" content="In this tutorial you will learn how to prepare ordinary Flutter project to have 3 different flavors and how to handle CI/CD with fastlane.">
+<meta property="og:description" content="In this tutorial you will learn how to prepare ordinary Flutter project to have 3 different flavors and how to handle CI/CD with fastlane.">
+<link rel="canonical" href="https://roszkowski.dev/2019/flutter-flavors/">
+<meta property="og:url" content="https://roszkowski.dev/2019/flutter-flavors/">
+<meta property="og:site_name" content="Dominik Roszkowski - Flutter Freelancer">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2019-07-14T21:00:00+00:00">
+<script type="text/javascript" async="" src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/analytics.js"></script><script type="application/ld+json">
+{"@type":"BlogPosting","dateModified":"2019-07-14T21:00:00+00:00","datePublished":"2019-07-14T21:00:00+00:00","headline":"Flavors in Flutter with Fastlane - yet another guide","mainEntityOfPage":{"@type":"WebPage","@id":"https://roszkowski.dev/2019/flutter-flavors/"},"url":"https://roszkowski.dev/2019/flutter-flavors/","author":{"@type":"Person","name":"Dominik Roszkowski"},"description":"In this tutorial you will learn how to prepare ordinary Flutter project to have 3 different flavors and how to handle CI/CD with fastlane.","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <meta name="google-site-verification" content="haxN_AmtIvcRGGbaTEwXWJnpPPmoyDPBpLEEbe05pms">
+    <meta name="referrer" content="origin">
+<script type="text/javascript" async="" src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/embed.js"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.91790a929b2fba6bf8967d2204d948d5.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.b9167d06dc7bd01b59d6d6332d6aafa1.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.b9f55e00ac59a682cfbac91eadf883d4.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/alfalfalfa.0823c767a3bc925f628afd9bed26c958.js" async="" charset="UTF-8"></script></head>
+
+<body class="site animated fade-in-down">
+  
+	
+
+  <div class="site-wrap">
+    <header class="site-header px2 px-responsive">
+  <div class="mt2 wrap">
+    <div class="measure">
+      <a href="https://roszkowski.dev/" class="site-title">Dominik Roszkowski - Flutter Freelancer</a>
+      <nav class="site-nav">
+        
+
+
+
+    
+    
+    
+    
+        <a class="nav-link" href="https://roszkowski.dev/about/">About</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="https://roszkowski.dev/talks/">Public speaking</a>
+    
+
+    
+
+    
+    
+    
+    
+        <a class="nav-link" href="https://roszkowski.dev/contact/">Contact</a>
+    
+
+    
+
+
+      </nav>
+      <div class="clearfix"></div>
+      
+    </div>
+  </div>
+</header>
+
+
+    <div class="post p2 p-responsive wrap" role="main">
+      <div class="measure">
+        
+
+
+<div class="post-header mb2">
+  <h1>Flavors in Flutter with Fastlane - yet another guide</h1>
+  <span class="post-meta">Jul 14, 2019</span><br>
+  
+  <span class="post-meta small">
+  
+    12 minute read
+  
+  </span>
+</div>
+
+<article class="post-content">
+  <p>It’s a good practice to build separate apps for development, test and production environment. In case of mobile apps a good way to have separate configurations is usage of flavors.</p>
+
+<p>In this tutorial you will learn how to prepare ordinary Flutter project to have 3 different flavors (<strong>dev</strong>, <strong>test</strong> and <strong>production</strong>) and how to handle build, signing and deployment with fastlane.</p>
+
+<p><strong>TL;DR</strong> Just go to <a href="https://github.com/orestesgaolin/flutter-flavors">the repository</a> where all the flavors are already configured.</p>
+
+<p><strong>Contents</strong></p>
+
+<ul id="markdown-toc">
+  <li><a href="https://roszkowski.dev/2019/flutter-flavors/#basics" id="markdown-toc-basics">Basics</a>    <ul>
+      <li><a href="https://roszkowski.dev/2019/flutter-flavors/#fastlane" id="markdown-toc-fastlane">Fastlane</a></li>
+    </ul>
+  </li>
+  <li><a href="https://roszkowski.dev/2019/flutter-flavors/#flavors-in-dart" id="markdown-toc-flavors-in-dart">Flavors in Dart</a>    <ul>
+      <li><a href="https://roszkowski.dev/2019/flutter-flavors/#preparation" id="markdown-toc-preparation">Preparation</a></li>
+      <li><a href="https://roszkowski.dev/2019/flutter-flavors/#how-to-configure-flutter-project" id="markdown-toc-how-to-configure-flutter-project">How to configure Flutter project</a></li>
+      <li><a href="https://roszkowski.dev/2019/flutter-flavors/#how-to-build-or-run-flutter-project" id="markdown-toc-how-to-build-or-run-flutter-project">How to build or run Flutter project</a></li>
+    </ul>
+  </li>
+  <li><a href="https://roszkowski.dev/2019/flutter-flavors/#flavors-on-android" id="markdown-toc-flavors-on-android">Flavors on Android</a></li>
+  <li><a href="https://roszkowski.dev/2019/flutter-flavors/#flavors-on-ios" id="markdown-toc-flavors-on-ios">Flavors on iOS</a>    <ul>
+      <li><a href="https://roszkowski.dev/2019/flutter-flavors/#creating-schemes" id="markdown-toc-creating-schemes">Creating schemes</a></li>
+      <li><a href="https://roszkowski.dev/2019/flutter-flavors/#extending-configuration" id="markdown-toc-extending-configuration">Extending configuration</a></li>
+      <li><a href="https://roszkowski.dev/2019/flutter-flavors/#archiving" id="markdown-toc-archiving">Archiving</a></li>
+    </ul>
+  </li>
+  <li><a href="https://roszkowski.dev/2019/flutter-flavors/#signing-ios-app-with-fastlane" id="markdown-toc-signing-ios-app-with-fastlane">Signing iOS app with fastlane</a>    <ul>
+      <li><a href="https://roszkowski.dev/2019/flutter-flavors/#rebuilding-and-signing-with-fastlane" id="markdown-toc-rebuilding-and-signing-with-fastlane">Rebuilding and signing with fastlane</a></li>
+    </ul>
+  </li>
+  <li><a href="https://roszkowski.dev/2019/flutter-flavors/#summary" id="markdown-toc-summary">Summary</a></li>
+</ul>
+
+<h2 id="basics">Basics</h2>
+
+<p>The concept of flavors is taken from Android apps and can be applied to iOS in various ways (more on this later). By incorporating flavors in your project you can build your app with different configuration options, styles or feature sets. In commercial projects it’s a standard way of distributing apps.</p>
+
+<p>There are several great articles on build flavors just to mention:</p>
+
+<ul>
+  <li><a href="https://cogitas.net/creating-flavors-of-a-flutter-app/">Creating flavors of a Flutter app (Flutter &amp; Android setup)</a> by Natalie Masse Hooper,</li>
+  <li><a href="https://medium.com/@salvatoregiordanoo/flavoring-flutter-392aaa875f36">Flavoring Flutter</a> by Salvatore Giordano,</li>
+  <li><a href="https://medium.com/flutter-community/flutter-ready-to-go-e59873f9d7de#c38c">Flutter Ready to Go (flavors, connectivity and more)</a> by Julio Henrique Bitencourt.</li>
+</ul>
+
+<p>In this article I’ll show a similar but a subtly different approach and focus mostly on iOS part. Presented way works really well for me and my colleagues. It’s been battle tested with several apps already and is getting better with each new project.</p>
+
+<p>For instance our test builds have AppCenter distribution packages to automate updates and additional logging included, dev builds have very verbose logging, and production apps come without unnecessary diagnostics but with production logging configuration.</p>
+
+<p>Flutter comes with built-in flavor support but default project is not prepared to handle them. All it takes to define flavors is to add and edit few files. There are multiple ways to achieve this and with each new project you’ll have a chance to improve your approach. Especially on iOS there are multiple ways to provide different bundle ids or configuration parameters.</p>
+
+<h3 id="fastlane">Fastlane</h3>
+
+<p>In my daily job I use <strong>fastlane</strong> to automate apps deployment to QA and app stores. In this article I will show how to use flavors with fastlane but in general you can handle flavors manually or in typical CI environment like Codemagic or Bitrise.</p>
+
+<p>Fastlane allows you to define specific <em>lanes</em> for each app in code like <code class="language-plaintext highlighter-rouge">deploy_to_appcenter</code> or <code class="language-plaintext highlighter-rouge">deploy_to_store</code>. A set of files can describe signing, build and deployment phases. Those can be reproduced both on developer’s computer, but also on CI/CD platform. Fastlane allows to automate provisioning and signing of iOS apps as well as screenshot capture or updating the description in store. This gives us a very convenient and reproducible way of distributing our app.</p>
+
+<p>There is no native support of Flutter apps in fastlane but we can define fastlane configuration for Android and iOS projects and treat them as typical native apps.</p>
+
+<h2 id="flavors-in-dart">Flavors in Dart</h2>
+
+<h3 id="preparation">Preparation</h3>
+
+<p>In this article I use Flutter v1.7.8+hotfix.3 and demo app is created with Kotlin, AndroidX, and Swift support by:</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/flutter-create.svg" alt="flutter create -i swift -a kotlin --androidx --org com.flutter flutter_flavors"></p>
+
+<p>It’s a good practice to create new projects with Kotlin and Swift support. AndroidX is a future of Android development so while starting new project you should definitely have it enabled. You will benefit from Swift later in your project when you’ll have to write some platform specific code.</p>
+
+<h3 id="how-to-configure-flutter-project">How to configure Flutter project</h3>
+
+<p>In order to take the advantage of flavors in Flutter app you should define 3 separate main files<sup id="fnref:1"><a href="https://roszkowski.dev/2019/flutter-flavors/#fn:1" class="footnote">1</a></sup> that will handle all the configuration details different for each scheme. The easiest way is to rename <code class="language-plaintext highlighter-rouge">main.dart</code> to <code class="language-plaintext highlighter-rouge">main_common.dart</code> and create:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">main_dev.dart</code></li>
+  <li><code class="language-plaintext highlighter-rouge">main_tst.dart</code></li>
+  <li><code class="language-plaintext highlighter-rouge">main_prod.dart</code></li>
+</ul>
+
+<p>In each of them you can define respective configuration and later just start execution of the app from a common function.</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="s">'dart:async'</span><span class="o">;</span>
+
+<span class="kn">import</span> <span class="s">'package:flutter_flavors/app_config.dart'</span><span class="o">;</span>
+<span class="kn">import</span> <span class="s">'package:flutter_flavors/main_common.dart'</span><span class="o">;</span>
+
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">main</span><span class="o">()</span> <span class="n">async</span> <span class="o">{</span> <span class="c1">// async can be useful if you fetch from disk or network</span>
+  <span class="c1">// do flavor specific configuration here e.g. API endpoints</span>
+  <span class="kd">final</span> <span class="n">config</span> <span class="o">=</span> <span class="n">AppConfig</span><span class="o">(</span><span class="s">'tst'</span><span class="o">);</span>
+
+  <span class="n">mainCommon</span><span class="o">(</span><span class="n">config</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>The <code class="language-plaintext highlighter-rouge">AppConfig</code> class is a used to store some basic configuration options like name or API endpoints.</p>
+
+<p>In <code class="language-plaintext highlighter-rouge">main_common.dart</code> you should replace the 3rd line with:</p>
+
+<div class="language-dart highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">void</span> <span class="nf">mainCommon</span><span class="p">(</span><span class="n">AppConfig</span> <span class="n">config</span><span class="o">)</span> <span class="o">=&gt;</span> <span class="n">runApp</span><span class="o">(</span><span class="n">MyApp</span><span class="o">(</span><span class="n">config</span><span class="o">));</span>
+</code></pre></div></div>
+
+<p>This step of the configuration you can investigate in <a href="https://github.com/orestesgaolin/flutter-flavors/commit/a4c7ef8e351676825b422839baa539ecf7f021d9">commit a4c7ef8e</a>.</p>
+
+<h3 id="how-to-build-or-run-flutter-project">How to build or run Flutter project</h3>
+
+<p>Typically you would run following commands to build flavored app:</p>
+
+<p><strong>Ordinary apk:</strong> <code class="language-plaintext highlighter-rouge">flutter build apk --release -t lib/main_tst.dart --build-name=1.0.0 --build-number=1 --flavor tst </code></p>
+
+<p><strong>App bundle:</strong> <code class="language-plaintext highlighter-rouge">flutter build appbundle --target-platform android-arm,android-arm64 --release -t lib/main_tst.dart --build-name=1.0.0 --build-number=1 --flavor tst</code></p>
+
+<p><strong>iOS:</strong> <code class="language-plaintext highlighter-rouge">flutter build ios --release --no-codesign -t lib/main_tst.dart --build-name=1.0.0 --build-number=1 --flavor tst</code></p>
+
+<p>Some important things to notice here:</p>
+
+<ul>
+  <li>we define build numbers (<code class="language-plaintext highlighter-rouge">1</code>) and build names (<code class="language-plaintext highlighter-rouge">1.0.0</code>)</li>
+  <li>we use <strong>tst</strong> flavor</li>
+  <li>we skip codesign for iOS (we’ll sign our app with fastlane)</li>
+  <li>we’ll sign our android app later</li>
+</ul>
+
+<p>In order to run the app with desired flavor in VS Code you can define your own <code class="language-plaintext highlighter-rouge">launch.json</code> configuration. Below you may find a sample I use in my apps. You may copy it to the configuration file that opens when you click the cog wheel on debug pad in VS Code.</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/vscode-cog.png" alt="click this cog wheel in VS Code"></p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.2.0"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"configurations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flutter Dev"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"flutterMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"debug"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lib/main_dev.dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"--flavor"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dev"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flutter Dev Release"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"flutterMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"release"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lib/main_dev.dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"--flavor"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dev"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flutter Profile"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"flutterMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profile"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lib/main_dev.dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"--flavor"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"dev"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flutter Test"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"flutterMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"release"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lib/main_tst.dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"--flavor"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"tst"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Flutter Prod"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"request"</span><span class="p">:</span><span class="w"> </span><span class="s2">"launch"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"flutterMode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"release"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"program"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lib/main_prod.dart"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"args"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="s2">"--flavor"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"prod"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+  
+</span></code></pre></div></div>
+
+<p>At this point these commands would fail because we haven’t defined flavors in Android and iOS apps yet.</p>
+
+<h2 id="flavors-on-android">Flavors on Android</h2>
+
+<p>Defining flavors on Android is really straightforward. The only file to be changed is <code class="language-plaintext highlighter-rouge">build.gradle</code> in <code class="language-plaintext highlighter-rouge">app</code> directory.</p>
+
+<p>Just add the following lines after buildTypes node and before closing bracket:</p>
+
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    <span class="n">flavorDimensions</span> <span class="s2">"flavor-type"</span>
+
+    <span class="n">productFlavors</span> <span class="o">{</span>
+        <span class="n">dev</span> <span class="o">{</span>
+            <span class="n">dimension</span> <span class="s2">"flavor-type"</span>
+            <span class="n">applicationIdSuffix</span> <span class="s2">".dev"</span>
+            <span class="n">versionNameSuffix</span> <span class="s2">"-dev"</span>
+            <span class="n">manifestPlaceholders</span> <span class="o">=</span> <span class="o">[</span><span class="nl">appName:</span> <span class="s2">"Flavor DEV"</span><span class="o">]</span>
+        <span class="o">}</span>
+        <span class="n">tst</span> <span class="o">{</span>
+            <span class="n">dimension</span> <span class="s2">"flavor-type"</span>
+            <span class="n">applicationIdSuffix</span> <span class="s2">".test"</span>
+            <span class="n">versionNameSuffix</span> <span class="s2">"-test"</span>
+            <span class="n">manifestPlaceholders</span> <span class="o">=</span> <span class="o">[</span><span class="nl">appName:</span> <span class="s2">"Flavor TST"</span><span class="o">]</span>
+        <span class="o">}</span>
+        <span class="n">prod</span> <span class="o">{</span>
+            <span class="n">dimension</span> <span class="s2">"flavor-type"</span>
+            <span class="n">manifestPlaceholders</span> <span class="o">=</span> <span class="o">[</span><span class="nl">appName:</span> <span class="s2">"Flavor"</span><span class="o">]</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<p>You can take a look at the exact diff here in <a href="https://github.com/orestesgaolin/flutter-flavors/commit/cef5fbffea052c9c26f93aa4ab63d3434b0a44e1">commit cef5fbff</a>.</p>
+
+<p>Some important notes here:</p>
+
+<ul>
+  <li>we have different app ids for each flavor: <code class="language-plaintext highlighter-rouge">com.flutter.flutter_flavor.dev</code>, <code class="language-plaintext highlighter-rouge">com.flutter.flutter_flavor.test</code>, and <code class="language-plaintext highlighter-rouge">com.flutter.flutter_flavor</code> - this way you can install all 3 apps on a single device, have separate google-services.json files and distinct the app in some logging service or Firebase</li>
+  <li>we set different app names</li>
+  <li>we set different version name suffixes e.g. <code class="language-plaintext highlighter-rouge">1.0.0</code> becomes <code class="language-plaintext highlighter-rouge">1.0.0-test</code></li>
+</ul>
+
+<p><img align="right" width="300" src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/android-res.png"></p>
+
+<p>Flavors on Android allow us to define separate resources for each of them. E.g. you can have a special icon for QA builds or different strings resources.
+What you need to do to provide new icon is just create <code class="language-plaintext highlighter-rouge">mipmap-...</code> folders with icons in <code class="language-plaintext highlighter-rouge">app/src/tst</code> directory. The same works for any other resources and schemes.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>app
+| - src
+   | - debug <span class="o">(</span>default<span class="o">)</span>
+   | - main <span class="o">(</span>default<span class="o">)</span>
+   | - profile <span class="o">(</span>default<span class="o">)</span>
+   | - tst <span class="o">(</span>add this with desired subdirectories<span class="o">)</span>
+</code></pre></div></div>
+
+<p>At this point you should be able to build 3 separate flavors of the app for Android.</p>
+
+<h2 id="flavors-on-ios">Flavors on iOS</h2>
+
+<p>Typically, in iOS apps you can base flavors on build schemes. In order to configure this you’ll need macOS and Xcode. To start you should open <code class="language-plaintext highlighter-rouge">ios/Runner.xcworkspace</code> in Xcode.</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/ios-xcode.png" alt="iOS project open in Xcode"></p>
+
+<h3 id="creating-schemes">Creating schemes</h3>
+
+<p>Default scheme for Flutter apps is Runner. We’ll define additional 3 schemes named exactly as the previously defined flavors i.e. <code class="language-plaintext highlighter-rouge">dev</code>, <code class="language-plaintext highlighter-rouge">tst</code> and <code class="language-plaintext highlighter-rouge">prod</code>. You should go to <code class="language-plaintext highlighter-rouge">Product &gt; Scheme &gt; Manage</code> schemes and add them via <code class="language-plaintext highlighter-rouge">+</code> button. Make sure the schemes are marked as <em>Shared</em>.</p>
+
+<center>
+<video loop="" autoplay="" width="90%" playsinline="" muted="">
+  <source src="/assets/images/ios-xcode-scheme.mp4" type="video/mp4">
+  <source src="/assets/images/ios-xcode-scheme.webm" type="video/webm">
+</video>
+</center>
+
+<!-- ![creating iOS schems in Xcode](/images/2019-07-15-flutter-guide-flavors/ios-xcode-scheme.mp4) -->
+
+<p>Then you should add 3 xconfig files to Flutter directory next to Debug, Release and Generated. Right click on Flutter directory on left pad in Xcode and select <code class="language-plaintext highlighter-rouge">New File</code>. Select <code class="language-plaintext highlighter-rouge">Configuration Settings File</code> and add <code class="language-plaintext highlighter-rouge">dev.xconfig</code>, <code class="language-plaintext highlighter-rouge">tst.xconfig</code> and <code class="language-plaintext highlighter-rouge">prod.xconfig</code>. Make sure they’re in Flutter directory as seen on the screenshot below.</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/ios-xcode-xconfig.png" alt="iOS configuration files"></p>
+
+<p>These files allow you to define custom variables that can be used later during build or in <code class="language-plaintext highlighter-rouge">Info.plist</code> file. We’ll define our custom app bundle ids here.</p>
+
+<p>My typical <code class="language-plaintext highlighter-rouge">dev.xconfig</code> files look like follows:</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "Generated.xcconfig"
+</span><span class="n">BUNDLE_ID_SUFFIX</span><span class="o">=</span><span class="p">.</span><span class="n">dev</span>
+<span class="n">PRODUCT_BUNDLE_IDENTIFIER</span><span class="o">=</span><span class="n">com</span><span class="p">.</span><span class="n">flutter</span><span class="p">.</span><span class="n">flutterflavors</span><span class="p">.</span><span class="n">dev</span>
+<span class="n">FLUTTER_TARGET</span><span class="o">=</span><span class="n">lib</span><span class="o">/</span><span class="n">main_dev</span><span class="p">.</span><span class="n">dart</span>
+<span class="n">APP_NAME</span><span class="o">=</span><span class="n">Flavor</span> <span class="n">DEV</span>
+</code></pre></div></div>
+
+<p>and <code class="language-plaintext highlighter-rouge">tst.xconfig</code> (note <code class="language-plaintext highlighter-rouge">.test</code> suffix, not <code class="language-plaintext highlighter-rouge">.tst</code><sup id="fnref:2"><a href="https://roszkowski.dev/2019/flutter-flavors/#fn:2" class="footnote">2</a></sup>):</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include "Generated.xcconfig"
+</span><span class="n">BUNDLE_ID_SUFFIX</span><span class="o">=</span><span class="p">.</span><span class="n">test</span>
+<span class="n">PRODUCT_BUNDLE_IDENTIFIER</span><span class="o">=</span><span class="n">com</span><span class="p">.</span><span class="n">flutter</span><span class="p">.</span><span class="n">flutterflavors</span><span class="p">.</span><span class="n">test</span>
+<span class="n">FLUTTER_TARGET</span><span class="o">=</span><span class="n">lib</span><span class="o">/</span><span class="n">main_tst</span><span class="p">.</span><span class="n">dart</span>
+<span class="n">APP_NAME</span><span class="o">=</span><span class="n">Flavor</span> <span class="n">TST</span>
+</code></pre></div></div>
+
+<h3 id="extending-configuration">Extending configuration</h3>
+
+<p>At this point you should copy and paste some build configurations and assign them to the respective scheme. There will be a lot of clicking and typing now so be patient.</p>
+
+<p>Go to project settings in Xcode, select <code class="language-plaintext highlighter-rouge">Runner</code> and then <code class="language-plaintext highlighter-rouge">Debug</code> in <em>Configurations</em> section. Press Enter to rename it to <code class="language-plaintext highlighter-rouge">Debug-dev</code>. Then duplicate it and call it <code class="language-plaintext highlighter-rouge">Debug-tst</code>, and another with <code class="language-plaintext highlighter-rouge">Debug-prod</code>. Repeat the procedure for <code class="language-plaintext highlighter-rouge">Release</code> and <code class="language-plaintext highlighter-rouge">Profile</code> configurations. Then assign previously created schemes to respective configurations. You should end up with following layout:</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/ios-xcode-configs.png" alt="iOS Xcode configurations"></p>
+
+<p>This should allow you to build your app with different bundle id per flavor. To make sure you can go to Build Settings of Runner target and look for <code class="language-plaintext highlighter-rouge">Product Bundle Identifier</code> position.</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/ios-xcode-packaging.png" alt="iOS product bundle identifiers"></p>
+
+<p>There is still one problem to be solved. When building the app Flutter takes into account the product bundle identifier visible in <em>General</em> tab of the target properties. So even with <code class="language-plaintext highlighter-rouge">tst</code> flavor you’ll see following output in console:</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/ios-signing.svg" alt="flutter build ios --release --no-codesign -t lib/main_tst.dart --build-number=1 --build-name=1.0.0 --flavor tst"></p>
+
+<p>Take a look at the wrong bundle id for <code class="language-plaintext highlighter-rouge">Release-tst</code> scheme.</p>
+
+<p>Fortunately, if we defined a <code class="language-plaintext highlighter-rouge">PRODUCT_BUNDLE_IDENTIFIER</code> variable in our <code class="language-plaintext highlighter-rouge">tst.xconfig</code> file this will be overwritten during the build so that generating and signing the <code class="language-plaintext highlighter-rouge">.test</code> bundle id will be possible.</p>
+
+<h3 id="archiving">Archiving</h3>
+
+<p>Finally, we should update each build scheme with correct build configuration.</p>
+
+<p>Go to <code class="language-plaintext highlighter-rouge">Product &gt; Schemes &gt; Manage Schemes</code>, select <code class="language-plaintext highlighter-rouge">dev</code> and click <code class="language-plaintext highlighter-rouge">Edit</code>. Now for each of the processes (Run, Test, Profile, Analyze, Archive) change the build configuration to <code class="language-plaintext highlighter-rouge">-dev</code> one. Repeat the process for <code class="language-plaintext highlighter-rouge">tst</code> and <code class="language-plaintext highlighter-rouge">prod</code> schemes.</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/ios-xcode-build-configs.png" alt="iOS build configs updated"></p>
+
+<h2 id="signing-ios-app-with-fastlane">Signing iOS app with fastlane</h2>
+
+<p>In order to sign and provision your app you’ll need Apple developer account and fastlane configured. I recommend creating a separate ‘service’ account for fastlane only with separate certificate. Create 3 application identifiers in Apple Developer portal e.g. <code class="language-plaintext highlighter-rouge">com.flutter.flutterflavors</code>, <code class="language-plaintext highlighter-rouge">com.flutter.flutterflavors.test</code>, and <code class="language-plaintext highlighter-rouge">com.flutter.flutterflavors.dev</code>.</p>
+
+<p>Go to <code class="language-plaintext highlighter-rouge">ios</code> folder in your console and initialize fastlane with manual mode (option 4.). In fastlane folder create <code class="language-plaintext highlighter-rouge">Matchfile</code> file next to <code class="language-plaintext highlighter-rouge">Fastfile</code> and <code class="language-plaintext highlighter-rouge">Appfile</code>.</p>
+
+<p>My typical <code class="language-plaintext highlighter-rouge">Matchfile</code> looks like this:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># you should store your provisioning profiles and certs in repository</span>
+<span class="c1"># this repository is encrypted with MATCH_PASSWORD env variable</span>
+<span class="n">git_url</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s2">"FASTLANE_GIT"</span><span class="p">])</span>
+<span class="n">storage_mode</span><span class="p">(</span><span class="s2">"git"</span><span class="p">)</span>
+<span class="n">username</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s2">"FASTLANE_USERNAME"</span><span class="p">])</span>
+<span class="n">team_id</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s2">"FASTLANE_TEAM"</span><span class="p">])</span>
+<span class="c1"># this is useful on CI/CD if you build test and production app </span>
+<span class="c1"># flavors with the same steps configuration</span>
+<span class="n">app_identifier</span><span class="p">(</span><span class="no">ENV</span><span class="p">[</span><span class="s2">"APP_NAME"</span><span class="p">])</span>
+<span class="n">type</span><span class="p">(</span><span class="s2">"development"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>After creating application ids and adding the files you should be able to generate provisioning profiles. Execute following commands and type desired bundle id when prompted:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec fastlane match development
+bundle exec fastlane match adhoc
+bundle exec fastlane match release
+</code></pre></div></div>
+
+<p>This whole iOS step can be observed in <a href="https://github.com/orestesgaolin/flutter-flavors/commit/162d2015cdab401fb1eafa8e06da88fa71351e16">commit 162d2015</a>.</p>
+
+<h3 id="rebuilding-and-signing-with-fastlane">Rebuilding and signing with fastlane</h3>
+
+<p>Unfortunately, it is necessary to rebuild iOS app to archive it and sign before deploying to testers or AppStore<sup id="fnref:3"><a href="https://roszkowski.dev/2019/flutter-flavors/#fn:3" class="footnote">3</a></sup>. With custom flavors it is necessary to provide provisioning profile match map manually. I couldn’t make the fastlane to detect all profiles automatically. If anyone knows better way to do this, then please share!</p>
+
+<p>My typical <code class="language-plaintext highlighter-rouge">Fastfile</code> for QA/test builds looks as follows<sup id="fnref:4"><a href="https://roszkowski.dev/2019/flutter-flavors/#fn:4" class="footnote">4</a></sup>:</p>
+
+<div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># update_fastlane</span>
+
+<span class="n">default_platform</span><span class="p">(</span><span class="ss">:ios</span><span class="p">)</span>
+
+<span class="n">platform</span> <span class="ss">:ios</span> <span class="k">do</span>
+  <span class="n">desc</span> <span class="s2">"Submit a new build to AppCenter"</span>
+  <span class="n">lane</span> <span class="ss">:test</span> <span class="k">do</span>
+    <span class="c1"># add_badge(dark: true)</span>
+    <span class="n">register_devices</span><span class="p">(</span>
+        <span class="ss">devices_file: </span><span class="s2">"fastlane/devices.txt"</span><span class="p">,</span>
+        <span class="ss">team_id: </span><span class="no">ENV</span><span class="p">[</span><span class="s2">"FASTLANE_TEAM"</span><span class="p">],</span>
+        <span class="ss">username: </span><span class="no">ENV</span><span class="p">[</span><span class="s2">"FASTLANE_USERNAME"</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">match</span><span class="p">(</span>
+      <span class="ss">type: </span><span class="s2">"adhoc"</span><span class="p">,</span>
+      <span class="ss">force_for_new_devices: </span><span class="kp">true</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">automatic_code_signing</span><span class="p">(</span>
+      <span class="ss">use_automatic_signing: </span><span class="kp">false</span>
+    <span class="p">)</span>
+    <span class="n">update_project_provisioning</span><span class="p">(</span>
+      <span class="ss">profile: </span><span class="no">ENV</span><span class="p">[</span><span class="s2">"sigh_com.flutter.flutterflavors.test_adhoc_profile-path"</span><span class="p">],</span>
+      <span class="ss">build_configuration: </span><span class="s2">"Release-tst"</span><span class="p">,</span>
+      <span class="ss">code_signing_identity: </span><span class="s2">"iPhone Distribution"</span>
+    <span class="p">)</span>
+    <span class="n">build_app</span><span class="p">(</span>
+      <span class="ss">scheme: </span><span class="s2">"tst"</span><span class="p">,</span>
+      <span class="ss">configuration: </span><span class="s2">"Release-tst"</span><span class="p">,</span>
+      <span class="ss">xcargs: </span><span class="s2">"-allowProvisioningUpdates"</span><span class="p">,</span>
+      <span class="ss">export_options: </span><span class="p">{</span>
+        <span class="ss">signingStyle: </span><span class="s2">"manual"</span><span class="p">,</span>
+        <span class="ss">method: </span><span class="s2">"ad-hoc"</span><span class="p">,</span>
+        <span class="ss">provisioningProfiles: </span><span class="p">{</span>
+          <span class="s2">"com.flutter.flutterflavors.test"</span><span class="p">:</span> <span class="s2">"match AdHoc com.flutter.flutterflavors.test"</span><span class="p">,</span>
+        <span class="p">}</span>
+      <span class="p">},</span>
+      <span class="ss">output_name: </span><span class="s2">"Runner.ipa"</span>
+    <span class="p">)</span>
+    <span class="c1"># upload to AppCenter or anywhere else</span>
+  <span class="k">end</span>
+
+  <span class="n">desc</span> <span class="s2">"Deploy a new version to the AppStore"</span>
+  <span class="n">lane</span> <span class="ss">:prod</span> <span class="k">do</span>
+
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>To build the app with fastlane you should execute just:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle exec fastlane ios test
+</code></pre></div></div>
+
+<p>At this point you may encounter a very nasty error that fastlane tries to build <code class="language-plaintext highlighter-rouge">com.flutter.flutterflavors.dev</code> instead of <code class="language-plaintext highlighter-rouge">com.flutter.flutterflavors.test</code>:</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/error-signing.png" alt="❌ error: Provisioning profile “match AdHoc com.flutter.flutterflavors.test” has app ID “com.flutter.flutterflavors.test”, which does not match the bundle ID “com.flutter.flutterflavors.dev”. (in target ‘Runner’)"></p>
+
+<p>The simplest solution that took me hours to find was just to delete bundle id from General tab in Xcode.</p>
+
+<center>
+<video loop="" autoplay="" width="90%" playsinline="" muted="">
+  <source src="/assets/images/ios-xcode-delete.mp4" type="video/mp4">
+  <source src="/assets/images/ios-xcode-delete.webm" type="video/webm">
+</video>
+</center>
+
+<!-- ![iOS Xcode delete bundle id](/images/2019-07-15-flutter-guide-flavors/ios-xcode-delete.mp4) -->
+
+<p>Now you should be able to have you <code class="language-plaintext highlighter-rouge">.ipa</code> archive ready to submit to AppCenter, Beta or directly to your testers.</p>
+
+<p><img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/success.png" alt=""></p>
+
+<p>Take a look at the <a href="https://github.com/orestesgaolin/flutter-flavors/commit/a3c5512af215e48a9e38912c073ec4b79b41831b">commit a3c5512a</a> to look through all the changes related to fastlane.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>After reading this article you should be able to configure Flutter flavors on your own. There are almost limitless possibilities related to flavors, schemes and configurations. For instance you can have separate Google Services files or Facebook ids for each flavor. You can enable or disable some features for test builds. You can even create multiple apps from single code base.</p>
+
+<p>I hope you learned something with me. See you soon in the next blog post 🖖.</p>
+
+<hr>
+<div class="footnotes">
+  <ol>
+    <li id="fn:1">
+      <p>Of course you can define as many flavors as you wish, 3 flavors are a good compromise&nbsp;<a href="https://roszkowski.dev/2019/flutter-flavors/#fnref:1" class="reversefootnote">↩</a></p>
+    </li>
+    <li id="fn:2">
+      <p>On Android you can’t define <em>test</em> flavor so we named it <em>tst</em>, but we wanted <em>.test</em> suffix to make it more obvious for QA. You can go with <em>test</em> names and files all the way if you prefer it.&nbsp;<a href="https://roszkowski.dev/2019/flutter-flavors/#fnref:2" class="reversefootnote">↩</a></p>
+    </li>
+    <li id="fn:3">
+      <p>This may be changed in future Flutter versions&nbsp;<a href="https://roszkowski.dev/2019/flutter-flavors/#fnref:3" class="reversefootnote">↩</a></p>
+    </li>
+    <li id="fn:4">
+      <p>I use several plugins to fastlane like <a href="https://github.com/HazAT/fastlane-plugin-badge">badge</a> or <a href="https://github.com/microsoft/fastlane-plugin-appcenter">appcenter</a>. I really recommend you to check them out.&nbsp;<a href="https://roszkowski.dev/2019/flutter-flavors/#fnref:4" class="reversefootnote">↩</a></p>
+    </li>
+  </ol>
+</div>
+
+</article>
+
+
+  <div class="share-page">
+  Please consider sharing this post
+
+  <div class="share-links">
+    
+      <a class="fa fa-facebook" href="https://facebook.com/sharer.php?u=https%3A%2F%2Froszkowski.dev%2F2019%2Fflutter-flavors%2F" rel="nofollow" target="_blank" title="Share on Facebook"></a>
+    
+
+    
+      <a class="fa fa-twitter" href="https://twitter.com/intent/tweet?text=Flavors+in+Flutter+with+Fastlane+-+yet+another+guide&amp;url=https%3A%2F%2Froszkowski.dev%2F2019%2Fflutter-flavors%2F" rel="nofollow" target="_blank" title="Share on Twitter"></a>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+      <a class="fa fa-reddit" href="http://reddit.com/submit?url=https%3A%2F%2Froszkowski.dev%2F2019%2Fflutter-flavors%2F&amp;title=Flavors+in+Flutter+with+Fastlane+-+yet+another+guide" rel="nofollow" target="_blank" title="Share on Reddit"></a>
+    
+
+    
+
+    
+      <a class="fa fa-hacker-news" onclick="parent.postMessage(&#39;submit&#39;,&#39;*&#39;)" href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2Froszkowski.dev%2F2019%2Fflutter-flavors%2F&amp;t=Flavors+in+Flutter+with+Fastlane+-+yet+another+guide" rel="nofollow" target="_blank" title="Share on Hacker News"></a>
+    
+  </div>
+</div>
+
+
+
+
+  <div class="py2 post-footer">
+  <img src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/avataaars.png" alt="Dominik Roszkowski" class="avatar">
+  <p>
+    Dominik is a Flutter freelancer, co-founder of Flutter Warsaw meetup and Flutter Europe conference.
+  </p>
+  <p>
+    He is also a deputy manager of PW-Sat2 student satellite project.<br>The satellite was sent to space in December 2018.
+  </p>
+  <p>
+    Follow him on <a href="https://twitter.com/OrestesGaolin">Twitter</a>.
+  </p>
+</div>
+
+
+
+  <div id="disqus_thread"><iframe id="dsq-app630" name="dsq-app630" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 394px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+  <script type="text/javascript">
+    var disqus_shortname  = 'roszkowski-dev';
+    var disqus_identifier = '/2019/flutter-flavors';
+    var disqus_title      = "Flavors in Flutter with Fastlane - yet another guide";
+
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+
+  <footer class="center">
+  <div class="measure">
+    <small>
+      <a href="https://github.com/johnotander/pixyll">Theme</a> crafted with ❤️ by <a href="http://johnotander.com/">John Otander</a> (<a href="https://twitter.com/4lpine">@4lpine</a>).<br>
+    </small>
+  </div>
+</footer>
+
+<script type="text/javascript">
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js")
+    }
+</script>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-143758559-1');
+</script>
+
+
+
+<iframe style="display: none;" src="./Flavors in Flutter with Fastlane - yet another guide – Dominik Roszkowski - Flutter Freelancer_files/saved_resource(1).html"></iframe></body></html>
