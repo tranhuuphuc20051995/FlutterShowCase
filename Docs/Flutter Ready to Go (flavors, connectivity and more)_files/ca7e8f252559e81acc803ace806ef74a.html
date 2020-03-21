@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://medium.com/media/ca7e8f252559e81acc803ace806ef74a -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>base_api.dart – Medium</title><meta name="description" content="GitHub Gist: instantly share code, notes, and snippets."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./1250cfed00deb94a109b7ee397bed1b8.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-31007ea0d3bd9f80540adfbc55afc7bd.css"><div id="gist95165592" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-base_api-dart" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-dart ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8" data-paste-markdown-skip="">
+      <tbody><tr>
+        <td id="file-base_api-dart-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-base_api-dart-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-c1">BaseApi</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-base_api-dart-LC2" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">static</span> <span class="pl-k">const</span> <span class="pl-k">int</span> <span class="pl-c1">TIMEOUT_SECONDS</span> <span class="pl-k">=</span> <span class="pl-c1">5</span>;</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-base_api-dart-LC3" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">final</span> <span class="pl-c1">String</span> baseUrl <span class="pl-k">=</span> <span class="pl-c1">FlavorConfig</span>.instance.values.baseUrl;</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-base_api-dart-LC4" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-base_api-dart-LC5" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">Future</span><span class="pl-k">&lt;</span><span class="pl-k">dynamic</span><span class="pl-k">&gt;</span> <span class="pl-en">get</span>(<span class="pl-c1">String</span> url) <span class="pl-k">async</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-base_api-dart-LC6" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">final</span> response <span class="pl-k">=</span> <span class="pl-k">await</span> http.<span class="pl-en">get</span>(url)</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-base_api-dart-LC7" class="blob-code blob-code-inner js-file-line">        .<span class="pl-en">timeout</span>(<span class="pl-k">const</span> <span class="pl-c1">Duration</span>(seconds<span class="pl-k">:</span> <span class="pl-c1">TIMEOUT_SECONDS</span>), onTimeout<span class="pl-k">:</span> _onTimeout);</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-base_api-dart-LC8" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">final</span> responseJson <span class="pl-k">=</span> json.<span class="pl-en">decode</span>(response.body);</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-base_api-dart-LC9" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> responseJson;</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L10" class="blob-num js-line-number" data-line-number="10"></td>
+        <td id="file-base_api-dart-LC10" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L11" class="blob-num js-line-number" data-line-number="11"></td>
+        <td id="file-base_api-dart-LC11" class="blob-code blob-code-inner js-file-line">  </td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L12" class="blob-num js-line-number" data-line-number="12"></td>
+        <td id="file-base_api-dart-LC12" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">Future</span><span class="pl-k">&lt;</span>http.<span class="pl-c1">Response</span><span class="pl-k">&gt;</span> <span class="pl-en">_onTimeout</span>() {</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L13" class="blob-num js-line-number" data-line-number="13"></td>
+        <td id="file-base_api-dart-LC13" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">throw</span> <span class="pl-k">new</span> <span class="pl-c1">SocketException</span>(<span class="pl-s">"Timeout during request"</span>);</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L14" class="blob-num js-line-number" data-line-number="14"></td>
+        <td id="file-base_api-dart-LC14" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-base_api-dart-L15" class="blob-num js-line-number" data-line-number="15"></td>
+        <td id="file-base_api-dart-LC15" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/JHBitencourt/1250cfed00deb94a109b7ee397bed1b8/raw/edec43bb8b9e71cc24584eab39364f3900ad0a65/base_api.dart" style="float:right">view raw</a>
+        <a href="https://gist.github.com/JHBitencourt/1250cfed00deb94a109b7ee397bed1b8#file-base_api-dart">base_api.dart</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script></body></html>

@@ -4,10 +4,13 @@ import 'package:flutterapp/resources/app_config.dart';
 import '../application.dart';
 
 void main() {
-  var configuredApp = AppConfig(
-    appTitle: "Flutter Flavors STG",
-    buildFlavor: "Staging",
-    child: MyApp(),
+  AppConfig(
+    flavor: Flavor.STG,
+    name: "STG",
+    color: Colors.yellow,
+    values: FlavorValues(
+        baseUrl:
+            "https://raw.githubusercontent.com/JHBitencourt/ready_to_go/master/lib/json/person_qa.json"),
   );
-  return runApp(configuredApp);
+  return runApp(MyApp());
 }

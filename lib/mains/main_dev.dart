@@ -4,10 +4,13 @@ import 'package:flutterapp/resources/app_config.dart';
 import '../application.dart';
 
 void main() {
-  var configuredApp = AppConfig(
-    appTitle: "Flutter Flavors Dev",
-    buildFlavor: "Development",
-    child: MyApp(),
+  AppConfig(
+    flavor: Flavor.DEV,
+    color: Colors.red,
+    name: "Dev",
+    values: FlavorValues(
+        baseUrl:
+            "https://raw.githubusercontent.com/JHBitencourt/ready_to_go/master/lib/json/person_dev.json"),
   );
-  return runApp(configuredApp);
+  return runApp(MyApp());
 }

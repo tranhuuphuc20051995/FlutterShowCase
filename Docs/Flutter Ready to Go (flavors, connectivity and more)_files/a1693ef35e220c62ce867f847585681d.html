@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://medium.com/media/a1693ef35e220c62ce867f847585681d -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><title>repository.dart – Medium</title><meta name="description" content="GitHub Gist: instantly share code, notes, and snippets."><meta name="twitter:widgets:csp" content="on"><meta name="robots" content="noindex"><!--<base target="_blank">--><base href="." target="_blank"><style>body {text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: "ff-tisa-web-pro", Georgia, Cambria, "Times New Roman", Times, serif; font-weight: 400; color: #333332; font-size: 18px; line-height: 1.4; margin: 0; background-color: white; overflow: hidden;}iframe {max-width: 100%;}</style></head><body><style>.gist .gist-file { margin-bottom: 0 !important; }.gist { text-rendering: auto; }</style><script src="./a1fb1db42375c74ffa32886c935297c0.js" charset="utf-8"></script><link rel="stylesheet" href="./gist-embed-31007ea0d3bd9f80540adfbc55afc7bd.css"><div id="gist95165612" class="gist">
+    <div class="gist-file">
+      <div class="gist-data">
+        <div class="js-gist-file-update-container js-task-list-container file-box">
+  <div id="file-repository-dart" class="file">
+    
+
+  <div itemprop="text" class="Box-body p-0 blob-wrapper data type-dart ">
+      
+<table class="highlight tab-size js-file-line-container" data-tab-size="8" data-paste-markdown-skip="">
+      <tbody><tr>
+        <td id="file-repository-dart-L1" class="blob-num js-line-number" data-line-number="1"></td>
+        <td id="file-repository-dart-LC1" class="blob-code blob-code-inner js-file-line"><span class="pl-k">class</span> <span class="pl-c1">Repository</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-repository-dart-L2" class="blob-num js-line-number" data-line-number="2"></td>
+        <td id="file-repository-dart-LC2" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">static</span> <span class="pl-c1">Repository</span> _instance <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">Repository</span>.<span class="pl-en">internal</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-repository-dart-L3" class="blob-num js-line-number" data-line-number="3"></td>
+        <td id="file-repository-dart-LC3" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">Repository</span>.<span class="pl-en">internal</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-repository-dart-L4" class="blob-num js-line-number" data-line-number="4"></td>
+        <td id="file-repository-dart-LC4" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">factory</span> <span class="pl-c1">Repository</span>() <span class="pl-k">=</span><span class="pl-k">&gt;</span> _instance;</td>
+      </tr>
+      <tr>
+        <td id="file-repository-dart-L5" class="blob-num js-line-number" data-line-number="5"></td>
+        <td id="file-repository-dart-LC5" class="blob-code blob-code-inner js-file-line">  <span class="pl-k">final</span> <span class="pl-c1">ApiProvider</span> _api <span class="pl-k">=</span> <span class="pl-k">new</span> <span class="pl-c1">ApiProvider</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-repository-dart-L6" class="blob-num js-line-number" data-line-number="6"></td>
+        <td id="file-repository-dart-LC6" class="blob-code blob-code-inner js-file-line">  <span class="pl-c1">Future</span><span class="pl-k">&lt;</span><span class="pl-c1">Person</span><span class="pl-k">&gt;</span> <span class="pl-en">fetchData</span>() <span class="pl-k">async</span> {</td>
+      </tr>
+      <tr>
+        <td id="file-repository-dart-L7" class="blob-num js-line-number" data-line-number="7"></td>
+        <td id="file-repository-dart-LC7" class="blob-code blob-code-inner js-file-line">    <span class="pl-k">return</span> _api.<span class="pl-en">fetchData</span>();</td>
+      </tr>
+      <tr>
+        <td id="file-repository-dart-L8" class="blob-num js-line-number" data-line-number="8"></td>
+        <td id="file-repository-dart-LC8" class="blob-code blob-code-inner js-file-line">  }</td>
+      </tr>
+      <tr>
+        <td id="file-repository-dart-L9" class="blob-num js-line-number" data-line-number="9"></td>
+        <td id="file-repository-dart-LC9" class="blob-code blob-code-inner js-file-line">}</td>
+      </tr>
+</tbody></table>
+
+
+  </div>
+
+  </div>
+</div>
+
+      </div>
+      <div class="gist-meta">
+        <a href="https://gist.github.com/JHBitencourt/a1fb1db42375c74ffa32886c935297c0/raw/b57fffb580cec3bdb5fb8fc13084fbd8fbbcd1d4/repository.dart" style="float:right">view raw</a>
+        <a href="https://gist.github.com/JHBitencourt/a1fb1db42375c74ffa32886c935297c0#file-repository-dart">repository.dart</a>
+        hosted with ❤ by <a href="https://github.com/">GitHub</a>
+      </div>
+    </div>
+</div>
+<script>var height = -1; var delayMs = 200; if (document) {document.domain = document.domain;}function notifyResize(height) {height = height ? height : document.documentElement.offsetHeight; var resized = false; if (window.donkey && donkey.resize) {donkey.resize(height);var elements = document.getElementsByClassName("gist-data"); for (var i = 0; i < elements.length; i++) {elements[i].style.overflow = "visible"}resized = true;}if (parent && parent._resizeIframe) {var obj = {iframe: window.frameElement, height: height}; parent._resizeIframe(obj); resized = true;}if (window.location && window.location.hash === "#amp=1" && window.parent && window.parent.postMessage) {window.parent.postMessage({sentinel: "amp", type: "embed-size", height: height}, "*");}if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.resize) {window.webkit.messageHandlers.resize.postMessage(height); resized = true;}return resized;}function maybeResize() {try {if (document.documentElement.offsetHeight != height && notifyResize()) {height = document.documentElement.offsetHeight;}delayMs = Math.min(delayMs * 2, 1000000); setTimeout(maybeResize, delayMs);} catch(error) {console.log('maybeResize error: ', error)}}maybeResize();</script></body></html>

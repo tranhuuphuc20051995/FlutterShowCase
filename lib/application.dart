@@ -6,24 +6,25 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: AppConfig.of(context).appTitle,
+      title: AppConfig.instance.name,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text(AppConfig.instance.name),
+          backgroundColor: AppConfig.instance.color,
+        ),
         body: Container(
-          child: Center(
-            child: Column(
-              children: <Widget>[
-                Text(
-                  "You are running ${AppConfig.of(context).buildFlavor} flavor",
-                ),
-                Text(
-                  'Theme',
-                  style: Theme.of(context).textTheme.display1,
-                ),
-              ],
-            ),
+          alignment: Alignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "You are running ${AppConfig.instance.flavor.toString()}",
+              ),
+            ],
           ),
         ),
       ),
