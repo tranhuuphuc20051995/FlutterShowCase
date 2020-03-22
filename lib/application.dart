@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'app/modules/splash/splash_screen.dart';
-import 'app/routes/routes_manager.dart';
+import 'app/routes/routes_setting_ext.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -9,8 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: SplashScreen(),
-      onGenerateRoute: (RouteSettings settings) =>
-          RouteManager.generateRoute(settings),
+      onGenerateRoute: (RouteSettings settings) => settings.generateRoute,
       onUnknownRoute: (RouteSettings setting) {
         return MaterialPageRoute(builder: (context) => NotFoundPage());
       },

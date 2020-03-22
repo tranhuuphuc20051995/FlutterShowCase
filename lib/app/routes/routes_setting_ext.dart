@@ -5,10 +5,9 @@ import 'package:flutterapp/app/modules/splash/splash_screen.dart';
 
 import 'route_const.dart';
 
-/// Route Manager: Register route
-class RouteManager {
-  static MaterialPageRoute generateRoute(RouteSettings settings) {
-    switch (settings.name) {
+extension GenerateRoute on RouteSettings {
+  get generateRoute {
+    switch (this.name) {
       case RouteName.SPLASH:
         return MaterialPageRoute(builder: (context) => SplashScreen());
         break;
