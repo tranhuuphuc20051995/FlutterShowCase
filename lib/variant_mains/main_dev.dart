@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/resources/app_config.dart';
+import 'package:flutterapp/configs/app_config.dart';
 
 import '../application.dart';
 

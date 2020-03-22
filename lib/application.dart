@@ -1,31 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:flutterapp/resources/app_config.dart';
+
+import 'app/modules/splash/splash_screen.dart';
+import 'app/routes/routes_manager.dart';
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: AppConfig.instance.name,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text(AppConfig.instance.name),
-          backgroundColor: AppConfig.instance.color,
-        ),
-        body: Container(
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Text(
-                "You are running ${AppConfig.instance.flavor.toString()}",
-              ),
-            ],
-          ),
+      home: SplashScreen(),
+      onGenerateRoute: (RouteSettings settings) =>
+          RouteManager.generateRoute(settings),
+      onUnknownRoute: (RouteSettings setting) {
+        return MaterialPageRoute(builder: (context) => NotFoundPage());
+      },
+      debugShowMaterialGrid: false,
+      debugShowCheckedModeBanner: false,
+      showSemanticsDebugger: false,
+    );
+  }
+}
+
+class NotFoundPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        child: Center(
+          child: Text("Not Found Page"),
         ),
       ),
     );
