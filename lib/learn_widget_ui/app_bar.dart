@@ -61,7 +61,49 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           ),
         ],
       ),
-      body: Container(),
+      body: Container(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Text.rich(
+              TextSpan(children: <TextSpan>[
+                TextSpan(
+                  text: "Text",
+                ),
+                TextSpan(
+                  text: " Rich",
+                  style: TextStyle(
+                    color: Colors.blueAccent,
+                  ),
+                )
+              ]),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            DefaultTextStyle(
+              child: Text("DefaultTextStyle"),
+              style: TextStyle(
+                color: Colors.amber,
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Text("Text"),
+            SizedBox(
+              height: 20,
+            ),
+            RichText(
+              text: TextSpan(
+                text: "Rich Text",
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
