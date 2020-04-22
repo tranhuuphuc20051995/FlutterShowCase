@@ -4,4 +4,5 @@ class RouteName {
   static const HOME = '/home';
   static const LEARN_WIDGET = '/learn_widget';
   static const APPBAR = '/app_bar';
+  static const STEPPER = '/stepper';
 }

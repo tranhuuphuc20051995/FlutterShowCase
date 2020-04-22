@@ -18,18 +18,32 @@ class _LearnWidgetsScreenState extends State<LearnWidgetsScreen> {
       ),
       body: Container(
         width: double.infinity,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            FlatButton(
-              child: Text(
-                'AppBar',
+        height: double.infinity,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              RaisedButton(
+                child: Text(
+                  'AppBar',
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, RouteName.APPBAR);
+                },
               ),
-              onPressed: () {
-                Navigator.pushNamed(context, RouteName.APPBAR);
-              },
-            ),
-          ],
+              SizedBox(
+                height: 20,
+              ),
+              RaisedButton(
+                child: Text(
+                  'Stepper',
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, RouteName.STEPPER);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
