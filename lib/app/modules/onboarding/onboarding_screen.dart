@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/app/routes/route_const.dart';
+import 'package:flutterapp/app_localizations/app_language_manager.dart';
 import 'package:flutterapp/app_localizations/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var appLanguage = Provider.of<AppLanguageManager>(context);
     return Scaffold(
       body: Container(
         child: Center(
@@ -12,8 +15,31 @@ class OnBoardingScreen extends StatelessWidget {
             onTap: () {
               Navigator.pushReplacementNamed(context, RouteName.HOME);
             },
-            child: Text(
-              AppLocalizations.of(context).translate('hello'),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  AppLocalizations.of(context).translate('hello'),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RaisedButton(
+                      onPressed: () {
+                        appLanguage.changeLanguage(Language.english);
+                      },
+                      child: Text('English'),
+                    ),
+                    RaisedButton(
+                      onPressed: () {
+                        appLanguage.changeLanguage(Language.vietnamese);
+                      },
+                      child: Text('Vietnamese'),
+                    )
+                  ],
+                ),
+              ],
             ),
           ),
         ),
