@@ -1,0 +1,194 @@
+I. Naming convention:
+  1. Classes, enums, typedefs, and extensions name should in [ UpperCamelCase ]
+
+      class MainScreen { ... }
+
+      enum MainItem { .. }
+
+      typedef Predicate<T> = bool Function(T value);
+
+      extension MyList<T> on List<T> { ... }
+
+  2. Libraries, packages, directories, and source files name should be in [ lowercase_with_underscores ]
+
+      library firebase_dynamic_links;
+
+      import 'socket/socket_manager.dart';
+
+  3. Variables, constants, parameters, and named parameters should be in [ lowerCamelCase ]
+
+      var item;
+
+      const bookPrice = 3.14;
+
+      final urlScheme = RegExp('^([a-z]+):');
+
+      void sum(int bookPrice) {
+        // ...
+      }
+
+II. Use relative imports for files in lib: (Import rõ ràng)
+    When use relative and absolute imports together then
+    It is possible to create confusion when the same class gets imported from two different ways.
+    To avoid this case we should use a relative path in the lib/ folder.
+
+    // Don't
+    import 'package:demo/src/utils/dialog_utils.dart';
+
+    // Do
+    import '../../../utils/dialog_utils.dart';
+
+III. Specify types for class member (Hạn chế sử dụng var, nên quy định loại dữ liệu của biến từ đầu -> rõ ràng, dễ đọc và dễ điều hướng)
+    Always specify the type of member when it’s value type is known. Avoid to use var when possible.
+
+    //Don't
+    var item = 10;
+    final car = Car();
+    const timeOut = 2000;
+
+    //Do
+    int item = 10;
+    final Car bar = Car();
+    String name = 'john';
+    const int timeOut = 20;
+
+IV. Avoid using as instead, use is operator (Nên sử dụng is vì nó tránh exception. "as" sẽ quăng ra exception khi mà nó không thể cast.
+  Usually, The as cast operator throws an exception if the cast is not possible.
+  To avoid an exception being thrown, one can use is.
+
+  //Don't
+  (item as Animal).name = 'Lion';
+
+  //Do
+  if (item is Animal)
+    item.name = 'Lion';
+
+V. Use if contain instead of conditional expression
+  Many times we need to render a widget based on some condition in Row and Column.
+  If conditional expression return null in any case then we should use if condition only.
+
+  //Don't
+  Widget getText(BuildContext context) {
+    return Row(
+      children: [
+        Text("Hello"),
+        Platform.isAndroid ? Text("Android") : null,
+        Platform.isAndroid ? Text("Android") : SizeBox(),
+        Platform.isAndroid ? Text("Android") : Container(),
+      ]
+    );
+  }
+
+
+  //Do
+  Widget getText(BuildContext context) {
+    return Row(
+        children:
+        [
+          Text("Hello"),
+          if (Platform.isAndroid) Text("Android")
+        ]
+    );
+  }
+
+VI. Use ?? and ?. operators
+  Prefer using ?? (if null) and ?. (null aware) operators instead of null checks in conditional expressions.
+
+  //Don't
+  v = a == null ? b : a;
+
+  //Do
+  v = a ?? b;
+
+
+  //Don't
+  v = a == null ? null : a.b;
+
+  //Do
+  v = a?.b;
+
+VII. Use spread collections
+  When existing items are already stored in another collection,
+  spread collection syntax leads to simpler code.
+
+  //Don't
+  var y = [4,5,6];
+  var x = [1,2];
+  x.addAll(y);
+
+  //Do
+  var y = [4,5,6];
+  var x = [1,2,...y];
+
+VIII. Use raw r'...' string
+  A raw string can be used to avoid escaping only backslashes and dollars
+
+  //Don't
+  var s = 'This is demo string \\ and \$';
+
+
+  //Do
+  var s = r'This is demo string \ and $';
+
+IX. Don’t explicitly initialize variables null (Không nên set = null cho các biến vì dart đã mặc định đặt null cho biến khi chúng chưa có giá trị ban đầu)
+  In Dart, the variable is automatically initialized to null when its value is not specified.
+  So adding = null is redundant and unneeded.
+
+  //Don't
+  int _item = null;
+
+
+  //Do
+  int _item;
+
+X. Use expression function bodies (Nên sử dụng => )
+  For functions that contain just one expression, you can use an expression function.
+  The => (arrow) notation is used for expression function.
+
+  //Don't
+  get width {
+    return right - left;
+  }
+
+  Widget getProgressBar() {
+    return CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+    );
+  }
+
+
+  //Do
+  get width => right - left;
+
+  Widget getProgressBar() => CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),);
+
+XI. Avoid print() calls (Tránh sử dụng print() thay vào đó hãy sử dụng debugPrint())
+  print()and debugPrint() both are used for logging in the console.
+  If you are use print()and output is too much at once, then Android sometimes discards some log lines.
+  To avoid this, use debugPrint().
+
+XII. Split widget into different Widgets.(Chia widget thành những widget khác nhau)
+  When setState() is called on a State, all descendent widgets will rebuild.
+  Therefore, Split widget into small widgets so the setState() call to the part of the subtree whose UI actually needs to change.
+
+XIII. Use ListView.builder for a long list (Sử dụng ListView.builder cho list dài)
+  When working with infinite lists or very large lists,
+  it’s usually advisable to use a ListView builder in order to improve performance.
+  Default ListView constructor builds the whole list at once.
+  ListView.builder creates a lazy list and when the user is scrolling down the list,
+  Flutter builds widgets on-demand.
+
+XIV. Use Const in Widgets (Set const cho các giá trị không thay đổi để nó ko bị ảnh hưởng khi setState -> Tăng hiệu suất)
+  The widget which will not change when setState call we should define it as constant.
+  It will prevent widget to rebuild so it improves performance.
+
+  Container(
+        padding: const EdgeInsets.only(top: 10),
+        color: Colors.black,
+        child: const Center(
+          child: const Text(
+            "No Data found",
+            style: const TextStyle(fontSize: 30, fontWeight: FontWeight.w800),
+          ),
+        ),
+      );
