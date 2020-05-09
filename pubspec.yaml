@@ -45,6 +45,10 @@ dependencies:
   json_annotation: ^3.0.1
   # Google font
   google_fonts: ^1.0.0
+  # Font awesome icon pack available as set of Flutter Icons
+  font_awesome_flutter: ^8.8.1
+  # Animations
+  animations: ^1.0.0+5
 dev_dependencies:
   flutter_test:
     sdk: flutter

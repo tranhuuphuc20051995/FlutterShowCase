@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/app/routes/route_const.dart';
 import 'package:flutterapp/app_localizations/app_language_manager.dart';
 import 'package:flutterapp/app_localizations/app_localizations.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
 
 class OnBoardingScreen extends StatelessWidget {
@@ -19,6 +20,8 @@ class OnBoardingScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                FaIcon(FontAwesomeIcons.addressBook),
+                FaIcon(FontAwesomeIcons.amazonPay),
                 Text(
                   AppLocalizations.of(context).translate('hello'),
                 ),
